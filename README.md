@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Smart Productivity Hub
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A personalized, real-time executive dashboard built with React that centralizes everyday utilities into a single, responsive interface. This project was developed for **CSI 3150: Web and Mobile Systems**.
 
-## Available Scripts
+[**Live Demo**](https://kayla-dawkins-smart-dashboard.vercel.app/) | [**Video Walkthrough**](https://drive.google.com/file/d/1xOPLrfMpDScvAsSldMi7TQKonXzthCqy/view?usp=sharing)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Project Overview
+The Smart Productivity Hub solves the muliple tab and apps problem by combining data streams into one dashboard. It integrates real-time weather, global news, a live clock, and a task manager to help users manage their day efficiently without switching between multiple applications.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Key Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Technical Requirements (Functional)
+* **Dual-API Integration**: 
+    * **Weather**: Fetches real-time data from OpenWeatherMap (temperature, humidity, wind speed) based on city input or geolocation.
+    * **News**: Retrieves top US headlines via NewsAPI with real-time filtering capabilities.
+* **State Persistence**: Uses `localStorage` to ensure your **To-Do List**, **Dark Mode** preference, and **Background URL** survive page refreshes.
+* **Active Clock**: A live-updating clock component that includes a cleanup function (`clearInterval`) to prevent memory leaks.
+* **Global Search**: A real-time search bar that filters news articles instantly as you type.
 
-### `npm test`
+### Advanced Features
+* **Background Customization**: Allows users to set a custom dashboard background via image URL with built-in validation.
+* **Geolocation Support**: Automatically detects the user's current coordinates to fetch local weather data when permission is given.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Component Architecture
+The application follows a modular React architecture where data flows from the root down to specialized children:
+* `App.js`: Root component managing global state for theme, search terms, and background.
+* `Clock.js`: Manages time state and lifecycle intervals.
+* `Weather.js`: Handles external data fetching for meteorological data.
+* `News.js`: Processes headline fetching and array filtering logic.
+* `ToDoList.js`: Manages local task state and persistent storage.
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+* Node.js (v14 or higher)
+* npm
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/danielle217/KaylaDawkins-Smart-Dashboard.git
+    ```
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
+3.  **Environment Variables**
+    Create a `.env` file in the root directory and add your API keys:
+    ```env
+    REACT_APP_WEATHER_API_KEY=your_openweathermap_key
+    REACT_APP_NEWS_API_KEY=your_newsapi_key
+    ```
+4.  **Run the App**
+    ```bash
+    npm start
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technical Challenges & Solutions
+* **State Synchronization**: Encountered issues where the To-Do toggle would nest objects incorrectly. Resolved by implementing the **Spread Operator** to properly update state without mutating previous data.
+* **API Error Handling**: Fixed a bug where failed network requests would crash the UI by implementing **try-catch blocks** and user-friendly error messages.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+This project was created for educational purposes as part of the CSI 3150 course.
